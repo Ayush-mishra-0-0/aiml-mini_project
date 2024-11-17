@@ -3,11 +3,16 @@ services:
     name: image-caption-translator
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    startCommand: gunicorn wsgi:app
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.0
+      - key: TRANSFORMERS_CACHE
+        value: /opt/render/project/src/models_cache
     disk:
       name: uploads
       mountPath: /app/static/uploads
       sizeGB: 1
+      name: models-cache
+      mountPath: /opt/render/project/src/models_cache
+      sizeGB: 6
