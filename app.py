@@ -172,7 +172,7 @@ def process_image():
         # Translate caption
         trans_lang, speech_lang = LANGUAGE_MAPPING[language]
         translation = translate_text(caption, trans_lang)
-        
+        print(f"Caption: {caption}, Translation: {translation}")
         # Generate audio
         tts = gTTS(text=translation, lang=speech_lang)
         audio_path = os.path.join(app.config['UPLOAD_FOLDER'], 'speech.mp3')
